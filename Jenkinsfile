@@ -11,7 +11,7 @@ pipeline {
     DOCKER_TAG = "1.0"
     ECR_REPOSITORY = "257307634175.dkr.ecr.ap-northeast-2.amazonaws.com"
     ECR_DOCKER_IMAGE = "${ECR_REPOSITORY}/${DOCKER_IMAGE_NAME}"
-    ECR_DKCER_TAG = "${DOCKER_TAG}"
+    ECR_DOCKER_TAG = "${DOCKER_TAG}"
   }
 
   stages {
@@ -42,7 +42,7 @@ pipeline {
         script {
           sh 'rm -f ~/.dockercfg ~/docker/config.json || true'
 
-          docker.withRegistry("https://${ECR_REPOSITORY}", "ecr:${REGION}:${AWS_CREDENTIALS_NAME}") {
+          docker.withRegistry("https://${ECR_REPOSITORY}", ecr:"${REGION}:${AWS_CREDENTIALS_NAME}") {
             docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
           }
         }
