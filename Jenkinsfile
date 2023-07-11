@@ -11,5 +11,17 @@ pipeline {
         git url: 'https://github.com/kyjun14/spring-petclinic.git', branch: 'efficient-webjars', credentialsId: 'GitCredentials'
       }
     }
+    stage('mvn build') {
+      steps {
+        sh 'mvn -Dmaven.test.failure.ignore=true install'
+      }
+      post{
+        success {
+          junit '**/target/surefire-reports/Test-*.xml*'
+        }
+      }
+    }
+
+    
   }
 }
