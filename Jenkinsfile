@@ -56,7 +56,7 @@ pipeline {
         dir("${env.WORKSPACE}") {
           sh 'zip -r deploy-1.0.zip ./scripts appspec.yml'
           sh 'aws s3 cp --region ap-northeast-2 --acl private ./deploy-1.0.zip s3://project01-terraform-state'
-          sh 'rm -rf ./deploy-1.0.zip
+          sh 'rm -rf ./deploy-1.0.zip'
         }
       }
     }
