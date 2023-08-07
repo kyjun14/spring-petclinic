@@ -63,7 +63,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-jenkins', awsAccessKey: 'AKIATX2F25H76OXDCHGI', awsSecretKey: <object of type hudson.util.Secret>, credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'ap-northeast-2', s3bucket: 'project01-terraform-state', s3prefix: '', subdirectory: '', versionFileName: '', waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-jenkins', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: 'ap-northeast-2', s3bucket: 'project01-terraform-state', s3prefix: '', subdirectory: '', versionFileName: '', waitForCompletion: false])
       }
     }
   }  
