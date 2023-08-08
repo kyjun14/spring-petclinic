@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  spring-petclinic:
+  project01-spring-petclinic:
     image: ${IMAGE}:${TAG}
     contanier_name: project01-spring-petclinic
     ports:
