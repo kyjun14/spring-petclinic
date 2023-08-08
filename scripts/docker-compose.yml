@@ -2,6 +2,6 @@ version: '3.9'
 services:
   spring-petclinic:
     image: ${IMAGE}:${TAG}
-    contanier_name: spring-petclinic
+    contanier_name: project01-spring-petclinic
     ports:
       - "8080:8080"
