@@ -9,6 +9,7 @@ pipeline {
     REGION = "ap-northeast-2"
     DOCKER_IMAGE_NAME = "project01-spring-petclinic"
     DOCKER_TAG = "1.0"
+    S3_BUCKET = "project01-terraform-state"
     ECR_REPOSITORY = "257307634175.dkr.ecr.ap-northeast-2.amazonaws.com/project01-spring-petclinic"
     ECR_DOCKER_IMAGE = "${ECR_REPOSITORY}/${DOCKER_IMAGE_NAME}"
     ECR_DOCKER_TAG = "${DOCKER_TAG}"      
@@ -55,7 +56,7 @@ pipeline {
       steps {
         dir("${env.WORKSPACE}") {
           sh 'zip -r deploy-1.0.zip ./scripts appspec.yml'
-          sh 'aws s3 cp --region ap-northeast-2 --acl private ./deploy-1.0.zip s3://project01-terraform-state'
+          sh 'aws s3 cp --region ap-northeast-2 --acl private ./deploy-1.0.zip s3://${S3_BUCKET}'
           sh 'rm -rf ./deploy-1.0.zip'
         }
       }
@@ -63,7 +64,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', excludes: '', iamRoleArn: '', includes: '',region: "${REGION}", s3bucket: 'project01-terraform-state', s3prefix: '', subdirectory: '', versionFileName: 'deploy-1.0.zip', waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', excludes: '', iamRoleArn: '', includes: '',region: "${REGION}", s3bucket: "${S3_BUCKET}", s3prefix: '', subdirectory: '', versionFileName: 'deploy-1.0.zip', waitForCompletion: false])
       }
     }
   }  
