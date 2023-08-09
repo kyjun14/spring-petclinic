@@ -10,6 +10,7 @@ pipeline {
     DOCKER_IMAGE_NAME = "project01-spring-petclinic"
     DOCKER_TAG = "1.0"
     S3_BUCKET = "project01-terraform-state"
+    APPLICATION_NAME = 'project01-production-in-place'
     ECR_REPOSITORY = "257307634175.dkr.ecr.ap-northeast-2.amazonaws.com/project01-spring-petclinic"
     ECR_DOCKER_IMAGE = "${ECR_REPOSITORY}/${DOCKER_IMAGE_NAME}"
     ECR_DOCKER_TAG = "${DOCKER_TAG}"      
@@ -62,11 +63,20 @@ pipeline {
       }
     }
 
+    stage('Create Codedeploy Applicatation') {
+      steps {
+        script {
+          sh 'aws deploy create-application --application-name "${APPLICATION_NAME}"'
+          sh 'aws deploy create-application --compute-platform "Server"'
+        }        
+      }
+    }
+
      
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', region: "${REGION}", waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: , deploymentGroupAppspec: false, deploymentGroupName: , region: "${REGION}", waitForCompletion: false])
       }
     }
   }  
