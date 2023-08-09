@@ -90,12 +90,12 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        createDeployment(s3Bucket: "${S3_BUCKET}", \
-                         s3Key: 'deploy-1.0.zip', \
-                         s3BundleType: 'zip', \
-                         applicationName: "${APPLICATION_NAME}", \ 
-                         deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", \
-                         deploymentConfigName: "${DEPLOYMENT_CONFIG_NAME}", \
+        createDeployment(s3Bucket: "${S3_BUCKET}" \
+                         s3Key: 'deploy-1.0.zip' \
+                         s3BundleType: 'zip' \
+                         applicationName: "${APPLICATION_NAME}" \ 
+                         deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}" \
+                         deploymentConfigName: "${DEPLOYMENT_CONFIG_NAME}" \
                          waitForCompletion: 'false')
       }
     }
