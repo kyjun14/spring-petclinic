@@ -83,8 +83,7 @@ pipeline {
           --deployment-group-name "${DEPLOYMENT_GROUP_NAME}" \
           --auto-scaling-groups "${AUTO_SCALING_GROUP_NAME}" \
           --service-role-arn "${SERVICE_ROLE_ARN}" \
-          --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}" \
-          --deployment-style=in-place'
+          --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}"'
         }
       }
     }
