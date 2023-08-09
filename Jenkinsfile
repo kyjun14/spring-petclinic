@@ -84,8 +84,7 @@ pipeline {
           --auto-scaling-groups "${AUTO_SCALING_GROUP_NAME}" \
           --service-role-arn "${SERVICE_ROLE_ARN}" \
           --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}" \
-          --deployment-style deploymentType=in-place \
-          --load-balancer-info targetGroupInfoList'
+          --deployment-style deploymentType=in-place'
         }
       }
     }
