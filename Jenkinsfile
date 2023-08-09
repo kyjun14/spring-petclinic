@@ -64,7 +64,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', excludes: '', iamRoleArn: '', includes: '',region: "${REGION}", s3bucket: "${S3_BUCKET}", s3prefix: '', subdirectory: '', versionFileName: 'deploy-1.0.zip', waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', includes: '',region: "${REGION}", s3bucket: "${S3_BUCKET}", versionFileName: './deploy-1.0.zip', waitForCompletion: false])
       }
     }
   }  
