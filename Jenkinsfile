@@ -87,5 +87,11 @@ pipeline {
         }
       }
     }
+
+    stage('Codedeploy') {
+      steps {
+        step([$class: 'AWSCodeDeployPublisher', applicationName: "${APPLICATION_NAME}", deploymentGroupAppspec: false, deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", region: "${REGION}", waitForCompletion: false])
+      }
+    }
   }  
 }
