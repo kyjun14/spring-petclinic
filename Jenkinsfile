@@ -71,13 +71,5 @@ pipeline {
         }        
       }
     }
-
-     
-
-   # stage('Codedeploy') {
-    #  steps {
-    #    step([$class: 'AWSCodeDeployPublisher', applicationName: , deploymentGroupAppspec: false, deploymentGroupName: , region: "${REGION}", waitForCompletion: false])
-    #  }
-    #}
   }  
 }
