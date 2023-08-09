@@ -66,8 +66,7 @@ pipeline {
     stage('Create Codedeploy Applicatation') {
       steps {
         script {
-          sh 'aws deploy create-application --application-name "${APPLICATION_NAME}"'
-          sh 'aws deploy create-application --compute-platform Server'
+          sh 'aws deploy create-application --application-name "${APPLICATION_NAME}" --compute-platform "Server"'
         }        
       }
     }
