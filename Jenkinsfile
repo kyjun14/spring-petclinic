@@ -62,9 +62,11 @@ pipeline {
       }
     }
 
+     
+
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', credentials: 'AWSCredentials', deploymentConfig: 'CodeDeployDefault.OneAtATime', deploymentGroupName: 'project01-production-in-place', includes: '',region: "${REGION}"])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', deploymentGroupAppspec: false, credentialsId:"${AWS_CREDENTIALS_NAME}" deploymentGroupName: 'project01-production-in-place', iamRoleArn: 'project01-code-deploy-service-role', region: "${REGION}", waitForCompletion: false])
       }
     }
   }  
