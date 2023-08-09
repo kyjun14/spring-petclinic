@@ -10,11 +10,11 @@ pipeline {
     DOCKER_IMAGE_NAME = "project01-spring-petclinic"
     DOCKER_TAG = "1.0"
     S3_BUCKET = "project01-terraform-state"
-    APPLICATION_NAME = 'project01-production-in-place'
-    DEPLOYMENT_GROUP_NAME = 'project01-production-in-place'
-    AUTO_SCALING_GROUP_NAME = 'project01-asg'
-    SERVICE_ROLE_ARN = 'arn:aws:iam::257307634175:role/project01-code-deploy-service-role'
-    DEPLOYMENT_CONFIG_NAME = 'CodeDeployDefault.OneAtATime'
+    APPLICATION_NAME = "project01-production-in-place"
+    DEPLOYMENT_GROUP_NAME = "project01-production-in-place"
+    AUTO_SCALING_GROUP_NAME = "project01-asg"
+    SERVICE_ROLE_ARN = "arn:aws:iam::257307634175:role/project01-code-deploy-service-role"
+    DEPLOYMENT_CONFIG_NAME = "CodeDeployDefault.OneAtATime"
     ECR_REPOSITORY = "257307634175.dkr.ecr.ap-northeast-2.amazonaws.com/project01-spring-petclinic"
     ECR_DOCKER_IMAGE = "${ECR_REPOSITORY}/${DOCKER_IMAGE_NAME}"
     ECR_DOCKER_TAG = "${DOCKER_TAG}"      
@@ -90,7 +90,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: "${APPLICATION_NAME}", deploymentConfig: "${DEPLOYMENT_CONFIG_NAME}", deploymentGroupAppspec: false, deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", proxyPort: 0, region: "${REGION}", waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: "${APPLICATION_NAME}", deploymentConfig: "${DEPLOYMENT_CONFIG_NAME}", credentials: "${AWS_CREDENTIALS_NAME}", deploymentGroupAppspec: false, deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", proxyPort: 0, region: "${REGION}", waitForCompletion: false])
       }
     }
   }  
