@@ -8,7 +8,7 @@ pipeline {
     AWS_CREDENTIALS_NAME = "AWSCredentials"
     REGION = "ap-northeast-2"
     DOCKER_IMAGE_NAME = "project01-spring-petclinic"
-    DOCKER_TAG = "2.0"
+    DOCKER_TAG = "1.0"
     S3_BUCKET = "project01-terraform-state"
     APPLICATION_NAME = "project01-production-in-place"
     DEPLOYMENT_GROUP_NAME = "project01-production-in-place"
