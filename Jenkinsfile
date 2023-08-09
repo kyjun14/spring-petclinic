@@ -74,10 +74,10 @@ pipeline {
 
      
 
-    stage('Codedeploy') {
-      steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: , deploymentGroupAppspec: false, deploymentGroupName: , region: "${REGION}", waitForCompletion: false])
-      }
-    }
+   # stage('Codedeploy') {
+    #  steps {
+    #    step([$class: 'AWSCodeDeployPublisher', applicationName: , deploymentGroupAppspec: false, deploymentGroupName: , region: "${REGION}", waitForCompletion: false])
+    #  }
+    #}
   }  
 }
