@@ -90,7 +90,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: "${APPLICATION_NAME}", deploymentConfig: "${DEPLOYMENT_CONFIG_NAME}", credentials: "${AWS_CREDENTIALS_NAME}", deploymentGroupAppspec: false, deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", region: "${REGION}", waitForCompletion: false])
+        step(s3Bucket: "${S3_BUCKET}", s3Key: 'deploy-1.0.zip', s3BundleType: 'zip', applicationName: "${APPLICATION_NAME}", deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", deploymentConfigName: "${DEPLOYMENT_CONFIG_NAME}", waitForCompletion: 'false')
       }
     }
   }  
