@@ -66,7 +66,7 @@ pipeline {
 
     stage('Codedeploy') {
       steps {
-        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', iamRoleArn: 'project01-code-deploy-service-role', region: "${REGION}", waitForCompletion: false])
+        step([$class: 'AWSCodeDeployPublisher', applicationName: 'project01-production-in-place', deploymentGroupAppspec: false, deploymentGroupName: 'project01-production-in-place', region: "${REGION}", waitForCompletion: false])
       }
     }
   }  
