@@ -91,6 +91,7 @@ pipeline {
     stage('Codedeploy') {
       steps {
         step([$class: 'AWSCodeDeployPublisher', applicationName: "${APPLICATION_NAME}", deploymentConfig: "${DEPLOYMENT_CONFIG_NAME}", deploymentGroupAppspec: false, deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", excludes: '', iamRoleArn: '', includes: '**', proxyHost: '', proxyPort: 0, region: "${REGION}", s3bucket: '', s3prefix: '', subdirectory: '', versionFileName: '', waitForCompletion: false])
+      }
     }
   }  
 }
