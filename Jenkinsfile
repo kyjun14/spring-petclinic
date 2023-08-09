@@ -70,6 +70,7 @@ pipeline {
     stage('Create Codedeploy Applicatation') {
       steps {
         script {
+          sh 'aws deploy delete-application --application-name "${APPLICATION_NAME}"
           sh 'aws deploy create-application --application-name "${APPLICATION_NAME}" --compute-platform Server'
         }        
       }
@@ -78,7 +79,7 @@ pipeline {
     stage('Create Codedeploy DeploymentGroup') {
       steps {
         script {
-          sh 'aws deploy create-deployment-group --application-name "${APPLICATION_NAME}" --deployment-group-name "${DEPLOYMENT_GROUP_NAME}" --auto-scaling-groups "${AUTO_SCALING_GROUP_NAME}" --service-role-arn "${SERVICE_ROLE_ARN}" --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}" --deployment-style deploymentType=in-place --load-balancer-info targetGroupInfoList=[(name=project01-target-group)]"'
+          sh 'aws deploy create-deployment-group --application-name "${APPLICATION_NAME}" --deployment-group-name "${DEPLOYMENT_GROUP_NAME}" --auto-scaling-groups "${AUTO_SCALING_GROUP_NAME}" --service-role-arn "${SERVICE_ROLE_ARN}" --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}" --deployment-style deploymentType=in-place --load-balancer-info targetGroupInfoList=[(name=project01-target-group)]'
         }
       }
     }
