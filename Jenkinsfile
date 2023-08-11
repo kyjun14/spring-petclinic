@@ -12,7 +12,7 @@ pipeline {
     S3_BUCKET = "project01-terraform-state"
     APPLICATION_NAME = "project01-production-in-place"
     DEPLOYMENT_GROUP_NAME = "project01-production-in-place"
-    AUTO_SCALING_GROUP_NAME = "project01-asg"
+    AUTO_SCALING_GROUP_NAME = "project01-group"
     SERVICE_ROLE_ARN = "arn:aws:iam::257307634175:role/project01-code-deploy-service-role"
     DEPLOYMENT_CONFIG_NAME = "CodeDeployDefault.OneAtATime"
     ECR_REPOSITORY = "257307634175.dkr.ecr.ap-northeast-2.amazonaws.com/project01-spring-petclinic"
