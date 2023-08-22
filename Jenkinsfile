@@ -87,17 +87,18 @@ pipeline {
         }
       }
     }
-
-    stage('Codedeploy') {
+    
+     stage('CodeDeploy') {
       steps {
-        createDeployment(s3Bucket: "${S3_BUCKET}", 
-                         s3Key: 'deploy-1.0.zip', 
-                         s3BundleType: 'zip', 
-                         applicationName: "${APPLICATION_NAME}",
-                         deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", 
-                         deploymentConfigName: "${DEPLOYMENT_CONFIG_NAME}",
-                         waitForCompletion: 'false')
+        script {
+          sh 'aws deploy create-deployment \
+                  --application-name project01-production-in-place \
+                  --deployment-config-name CodeDeployDefault.OneAtATime \
+                  --deployment-group-name project01-production-in-place \
+                  --description "My deployment" \
+                  --ignore-application-stop-failures \
+                  --s3-location bucket=project01-terraform-status,bundleType=zip,key=deploy-1.0.zip'
+        }
       }
-    }
-  }  
-}
+     }
+  }
