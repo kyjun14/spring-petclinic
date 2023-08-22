@@ -88,15 +88,15 @@ pipeline {
       }
     }
     
-     stage('Codedeploy') {
+     stage('CodeDeploy') {
       steps {
-        createDeployment(s3Bucket: "${S3_BUCKET}", 
-                         s3Key: 'deploy-1.0.zip', 
-                         s3BundleType: 'zip', 
-                         applicationName: "${APPLICATION_NAME}",
-                         deploymentGroupName: "${DEPLOYMENT_GROUP_NAME}", 
-                         deploymentConfigName: "${DEPLOYMENT_CONFIG_NAME}",
-                         ignoreApplicationStopFailures: false)
+        script {
+          sh 'aws deploy create-deployment \
+                  --application-name "${APPLICATION_NAME}" \
+                  --deployment-config-name "${DEPLOYMENT_CONFIG_NAME}" \
+                  --deployment-group-name "${DEPLOYMENT_GROUP_NAME}" \
+                  --s3-location bucket="${S3_BUCKET}",bundleType=zip,key=deploy-1.0.zip'
+        }
       }
     }
   }
