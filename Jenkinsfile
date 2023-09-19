@@ -9,7 +9,7 @@ pipeline {
     REGION = "ap-northeast-2"
     DOCKER_IMAGE_NAME = "project01-spring-petclinic"
     DOCKER_TAG = "1.0"
-    S3_BUCKET = "project01-terraform-state"
+    S3_BUCKET = "project01-deploy"
     APPLICATION_NAME = "project01-production-in-place"
     DEPLOYMENT_GROUP_NAME = "project01-production-in-place"
     AUTO_SCALING_GROUP_NAME = "project01-group"
